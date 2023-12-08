@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITTSportsCarnivalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="eventId" />
+    </Key>
+    <Property Name="eventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="test" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Teams" Relationship="Self.FK__Team__eventId__31EC6D26" FromRole="Event" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="GameType">
+    <Key>
+      <PropertyRef Name="gameTypeId" />
+    </Key>
+    <Property Name="gameTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gameName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="noOfPlayers" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Teams" Relationship="Self.FK__Team__gameId__32E0915F" FromRole="GameType" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="Match">
+    <Key>
+      <PropertyRef Name="matchId" />
+    </Key>
+    <Property Name="matchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="firstTeamId" Type="Int32" Nullable="false" />
+    <Property Name="secondTeamId" Type="Int32" Nullable="false" />
+    <Property Name="duration" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Team" Relationship="Self.FK__Match__firstTeam__300424B4" FromRole="Match" ToRole="Team" />
+    <NavigationProperty Name="Team1" Relationship="Self.secondTeamId" FromRole="Match" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="Occasion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="playerId" />
+    </Key>
+    <Property Name="playerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="playerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Team_Player" Relationship="Self.FK__Team_Play__playe__33D4B598" FromRole="Player" ToRole="Team_Player" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="teamId" />
+    </Key>
+    <Property Name="teamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="eventId" Type="Int32" Nullable="false" />
+    <Property Name="gameId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Event" Relationship="Self.FK__Team__eventId__31EC6D26" FromRole="Team" ToRole="Event" />
+    <NavigationProperty Name="GameType" Relationship="Self.FK__Team__gameId__32E0915F" FromRole="Team" ToRole="GameType" />
+    <NavigationProperty Name="Matches" Relationship="Self.FK__Match__firstTeam__300424B4" FromRole="Team" ToRole="Match" />
+    <NavigationProperty Name="Matches1" Relationship="Self.secondTeamId" FromRole="Team" ToRole="Match" />
+    <NavigationProperty Name="Team_Player" Relationship="Self.FK__Team_Play__teamI__34C8D9D1" FromRole="Team" ToRole="Team_Player" />
+  </EntityType>
+  <EntityType Name="Team_Player">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="playerId" Type="Int32" Nullable="false" />
+    <Property Name="teamId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="Self.FK__Team_Play__playe__33D4B598" FromRole="Team_Player" ToRole="Player" />
+    <NavigationProperty Name="Team" Relationship="Self.FK__Team_Play__teamI__34C8D9D1" FromRole="Team_Player" ToRole="Team" />
+  </EntityType>
+  <Association Name="FK__Team__eventId__31EC6D26">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="eventId" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="eventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Team__gameId__32E0915F">
+    <End Role="GameType" Type="Self.GameType" Multiplicity="1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameType">
+        <PropertyRef Name="gameTypeId" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="gameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Match__firstTeam__300424B4">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Match" Type="Self.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="teamId" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="firstTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="secondTeamId">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Match" Type="Self.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="teamId" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="secondTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Team_Play__playe__33D4B598">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="Team_Player" Type="Self.Team_Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="playerId" />
+      </Principal>
+      <Dependent Role="Team_Player">
+        <PropertyRef Name="playerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Team_Play__teamI__34C8D9D1">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Team_Player" Type="Self.Team_Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="teamId" />
+      </Principal>
+      <Dependent Role="Team_Player">
+        <PropertyRef Name="teamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ITTSportsCarnivalEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="GameTypes" EntityType="Self.GameType" />
+    <EntitySet Name="Matches" EntityType="Self.Match" />
+    <EntitySet Name="Occasions" EntityType="Self.Occasion" />
+    <EntitySet Name="Players" EntityType="Self.Player" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <EntitySet Name="Team_Player" EntityType="Self.Team_Player" />
+    <AssociationSet Name="FK__Team__eventId__31EC6D26" Association="Self.FK__Team__eventId__31EC6D26">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Team__gameId__32E0915F" Association="Self.FK__Team__gameId__32E0915F">
+      <End Role="GameType" EntitySet="GameTypes" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Match__firstTeam__300424B4" Association="Self.FK__Match__firstTeam__300424B4">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="Match" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="secondTeamId" Association="Self.secondTeamId">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="Match" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Team_Play__playe__33D4B598" Association="Self.FK__Team_Play__playe__33D4B598">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Team_Player" EntitySet="Team_Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Team_Play__teamI__34C8D9D1" Association="Self.FK__Team_Play__teamI__34C8D9D1">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="Team_Player" EntitySet="Team_Player" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

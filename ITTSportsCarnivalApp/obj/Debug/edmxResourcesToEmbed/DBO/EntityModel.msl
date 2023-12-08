@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ITTSportsCarnivalModelStoreContainer" CdmEntityContainer="ITTSportsCarnivalEntities1">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="eventId" ColumnName="eventId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="test" ColumnName="test" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameTypes">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.GameType">
+        <MappingFragment StoreEntitySet="GameType">
+          <ScalarProperty Name="gameTypeId" ColumnName="gameTypeId" />
+          <ScalarProperty Name="gameName" ColumnName="gameName" />
+          <ScalarProperty Name="noOfPlayers" ColumnName="noOfPlayers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Match">
+        <MappingFragment StoreEntitySet="Match">
+          <ScalarProperty Name="matchId" ColumnName="matchId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="firstTeamId" ColumnName="firstTeamId" />
+          <ScalarProperty Name="secondTeamId" ColumnName="secondTeamId" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Occasions">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Occasion">
+        <MappingFragment StoreEntitySet="Occasion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="playerId" ColumnName="playerId" />
+          <ScalarProperty Name="playerName" ColumnName="playerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Team">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="teamId" ColumnName="teamId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="eventId" ColumnName="eventId" />
+          <ScalarProperty Name="gameId" ColumnName="gameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Team_Player">
+      <EntityTypeMapping TypeName="ITTSportsCarnivalModel.Team_Player">
+        <MappingFragment StoreEntitySet="Team_Player">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="playerId" ColumnName="playerId" />
+          <ScalarProperty Name="teamId" ColumnName="teamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46b2ee65d86942f1b37cebad64336169" Name="Diagram1">
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Event" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.GameType" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Match" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Occasion" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Player" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Team" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITTSportsCarnivalModel.Team_Player" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.FK__Team__eventId__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.FK__Team__gameId__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.FK__Match__firstTeam__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.secondTeamId" ManuallyRouted="false" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.FK__Team_Play__playe__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="ITTSportsCarnivalModel.FK__Team_Play__teamI__34C8D9D1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
